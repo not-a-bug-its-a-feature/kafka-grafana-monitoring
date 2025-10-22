@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"strings"
-	// "time"
 
 	kafka "github.com/segmentio/kafka-go"
 )
@@ -14,7 +13,8 @@ import (
 func main() {
 	brokers := strings.Split(os.Getenv("KAFKA_BROKERS"), ",")
 	topic := os.Getenv("TOPIC_NAME")
-	messageCount := 100
+	messageCount := 1000
+	
 	// Producer
 	go func() {
 		writer := kafka.NewWriter(kafka.WriterConfig{
@@ -40,7 +40,6 @@ func main() {
 			} else {
 				log.Printf("Success Produced: %s", msg)
 			}
-			// time.Sleep(3 * time.Second)
 		}
 	}()
 
